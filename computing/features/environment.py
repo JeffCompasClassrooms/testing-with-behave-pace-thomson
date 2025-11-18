@@ -1,15 +1,16 @@
-from selenium import webdriver
+from behave_webdriver.chrome import Chrome
 from selenium.webdriver.chrome.options import Options
 
 def before_all(context):
-    options = Options()
-    options.binary_location = "/usr/bin/chromium-browser"
-    options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-gpu")
+    chrome_options = Options()
+    chrome_options.binary_location = "/usr/bin/chromium-browser"
+    chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
 
-    context.behave_driver = webdriver.Chrome(options=options)
+    # Use behave-webdriver’s Chrome wrapper
+    context.behave_driver = Chrome(options=chrome_options)
 
 def after_all(context):
     if hasattr(context, "behave_driver"):
