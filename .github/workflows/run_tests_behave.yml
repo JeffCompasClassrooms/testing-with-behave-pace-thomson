@@ -18,6 +18,11 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-spec requests behave
+
       - name: Install Chrome + ChromeDriver
         run: |
           sudo apt-get update
