@@ -1,5 +1,5 @@
-import behave_webdriver
-from behave_webdriver.steps import *
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 def before_all(context):
     options = Options()
@@ -12,5 +12,6 @@ def before_all(context):
     context.behave_driver = webdriver.Chrome(options=options)
 
 def after_all(context):
-    context.behave_driver.quit()
+    if hasattr(context, "behave_driver"):
+        context.behave_driver.quit()
 
