@@ -42,5 +42,8 @@ jobs:
       - name: Run behave tests
         run: |
           echo "Running behave BDD tests"
-          python -m behave
+          python -m behave isitchristmas/features 
+          python -m behave computing/features 
+          python -m behave peppers-ghost/features 
+          python -m behave rockymountain/features 
 
