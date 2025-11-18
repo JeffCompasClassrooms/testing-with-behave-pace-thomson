@@ -1,3 +1,38 @@
+name: Test Orchestrator
+
+# Allows a “Run workflow” button in the Actions tab
+on:
+  workflow_dispatch: {}
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          repository: JeffCompasClassrooms/testing-systems-pace-thomson
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # Specify your desired Python version, e.g., '3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-spec requests
+
+      # ---- your tests go here ----
+      - name: Run test for repo 
+        run: pytest --spec
+      
+
+
+
+
+
+
 name: Run Selenium + Behave Tests
 
 on:
@@ -21,7 +56,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install behave==1.2.6 behave-webdriver==0.3.1 selenium==3.141.0 urllib3==1.26.18 six==1.16.0
+          pip install pytest pytest-spec requests behave
 
       - name: Install Chrome + ChromeDriver
         run: |
@@ -42,8 +77,8 @@ jobs:
       - name: Run behave tests
         run: |
           echo "Running behave BDD tests"
-          python -m behave isitchristmas/features 
           python -m behave computing/features 
+          python -m behave isitchristmas/features 
           python -m behave peppers-ghost/features 
           python -m behave rockymountain/features 
 
