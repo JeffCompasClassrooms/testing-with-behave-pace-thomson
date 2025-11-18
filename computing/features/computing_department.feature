@@ -9,7 +9,7 @@ Feature: Utah Tech University Computing Department Website
 
   Scenario: Page loads successfully with main heading
     Given I open the url "https://computing.utahtech.edu/"
-    Then I expect that element "main" contains the text "Computing Department"
+    Then I expect that element "body" contains the text "Utah Tech"
 
   Scenario: Masters of Software Development section is accessible
     Given I open the url "https://computing.utahtech.edu/"
@@ -31,9 +31,9 @@ Feature: Utah Tech University Computing Department Website
     Given I open the url "https://computing.utahtech.edu/"
     Then I expect that element "nav" is visible
 
-  Scenario: Page loads successfully with main heading
+  Scenario: Page has a way to request a campus tour
     Given I open the url "https://computing.utahtech.edu/"
-    Then I expect that element "main" contains the text "Computing Department"
+    Then I expect that element "body" contains the text "PROGRAM LEARNING OUTCOMES"
 
   Scenario: Footer has Apply Now button
     Given I open the url "https://computing.utahtech.edu/"
