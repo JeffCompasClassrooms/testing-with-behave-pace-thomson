@@ -4,7 +4,7 @@ name: Run Selenium + Behave Tests
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: {}
+  workflow_call: {}
 
 jobs:
   test:
