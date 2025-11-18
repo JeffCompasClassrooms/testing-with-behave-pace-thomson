@@ -24,20 +24,10 @@ jobs:
           python -m pip install --upgrade pip
            python -m pip install behave==1.2.6 behave-webdriver==0.3.1 selenium==3.141.0 urllib3==1.26.18 six==1.16.0
 
-      - name: Install Chrome + ChromeDriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
-
-      - name: Add Chrome to PATH
-        run: |
-          echo "PATH=/usr/lib/chromium-browser/:$PATH" >> $GITHUB_ENV
-          echo "PATH=/usr/lib/chromium-browser/chromedriver:$PATH" >> $GITHUB_ENV
-
-      - name: Verify browser install
-        run: |
-          chromium-browser --version
-          chromedriver --version
+      - name: Setup Chrome + ChromeDriver
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
 
       # ----- Run Behave tests -----
       - name: Run behave tests
@@ -47,4 +37,21 @@ jobs:
           python -m behave isitchristmas/features 
           python -m behave peppers-ghost/features 
           python -m behave rockymountain/features 
+
+          
+      # - name: Install Chrome + ChromeDriver
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y chromium-browser chromium-chromedriver
+
+      # - name: Add Chrome to PATH
+      #   run: |
+      #     echo "PATH=/usr/lib/chromium-browser/:$PATH" >> $GITHUB_ENV
+      #     echo "PATH=/usr/lib/chromium-browser/chromedriver:$PATH" >> $GITHUB_ENV
+
+      # - name: Verify browser install
+      #   run: |
+      #     chromium-browser --version
+      #     chromedriver --version
+
 
